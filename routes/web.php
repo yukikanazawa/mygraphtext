@@ -13,4 +13,5 @@
 
 Route::get('/manager/', 'ManagerController@index');
 Route::get('/manager/subjects/{subject}', 'ManagerController@subject');
-Route::get('/manager/subjects/{subject}/{field}', 'ManagerController@field');
+Route::get('/manager/subjects/{subject}/{field}/{category}', 'ManagerController@category');
+Route::get('/manager/subjects/{subject}/{field}/{category}/{post}', 'ManagerController@show');
