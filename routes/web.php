@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/manager/', 'ManagerController@index');
+Route::get('/manager/subjects/{subject}', 'ManagerController@subject');
+Route::get('/manager/subjects/{subject}/{field}', 'ManagerController@field');
