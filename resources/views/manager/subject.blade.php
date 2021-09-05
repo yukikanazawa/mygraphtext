@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Blog</title>
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
-    </head>
+@extends('layouts.app')
+
+<link rel="stylesheet" href='{{ secure_asset('css/style.css') }}' />
+@section('content')
     <div class='body'> 
     <h1>学習指導教材[管理者用]</h1>
         <div class='create'><h4><a href='/manager/subjects/{{ $subject->id }}/create'><<分野を新規作成>></a></h4>
@@ -21,4 +18,4 @@
         </div>
         <div class='back'>[<a href='/manager/'>戻る</a>]</div>
     </div>
-</html>
+@endsection

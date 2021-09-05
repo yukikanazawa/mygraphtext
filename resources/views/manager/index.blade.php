@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Blog</title>
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
-    </head>
+@extends('layouts.app')
+
+<link rel="stylesheet" href='{{ secure_asset('css/style.css') }}' />
+@section('content')
     <div class='body'> 
     <h1>学習指導教材[管理者用]</h1>
         <div class='title'>
@@ -13,4 +10,4 @@
             @endforeach
         </div>
     </div>    
-</html>
+@endsection

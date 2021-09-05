@@ -1,0 +1,44 @@
+.py-4 {
+  background-color: #f0dce2;/*@sectionの中*/
+}
+
+.body {
+  margin-left: 50px;
+  margin-right: 100px;
+}
+
+h1 {
+  padding: 0.5em;/*文字周りの余白*/
+  color: #010101;/*文字色*/
+  background: #eaf3ff;/*背景色*/
+  border-bottom: solid 3px #516ab6;/*下線*/
+}
+
+h2 {
+  background: linear-gradient(transparent 70%, #a7d6ff 70%);
+}
+
+h3 {
+	display: inline;
+	font-size: 26px;
+	background-image: linear-gradient(transparent 70%, #ef8893 70%);
+}
+
+.comment {
+  padding: 0.5em 1em;
+  color: #5d627b;
+  background: white;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+
+.back {
+  font-weight: bold;
+}
+
+.flex {
+  display:flex;
+}
+
+.delete {
+  cursor: pointer;
+}
