@@ -32,4 +32,30 @@ class ManagerController extends Controller
     {
         return view('manager.show')->with(['field' => $field, 'subject' => $subject, 'category' => $category, 'post' => $post]);  
     }
+    
+    public function fieldcreate(subject $subject)
+    {
+        return view('manager.fieldcreate')->with(['subject' => $subject]); 
+    }
+    
+    public function fieldstore(Request $request, subject $subject, Field $field)
+    {
+        $input=$request['field']; 
+        $input['subject_id']=$subject->id;
+        $field->fill($input)->save();
+        return redirect('/manager/subjects/'.$subject->id);
+    }
+    
+    public function categorycreate(subject $subject)
+    {
+        return view('manager.categorycreate')->with(['subject' => $subject]); 
+    }
+    
+    public function categorystore(Request $request, subject $subject, Field $field)
+    {
+        $input=$request['field']; 
+        $input['subject_id']=$subject->id;
+        $field->fill($input)->save();
+        return redirect('/manager/subjects/'.$subject->id);
+    }
 }

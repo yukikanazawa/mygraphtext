@@ -1,14 +1,19 @@
 @extends('layouts.app')
 
 <link rel="stylesheet" href='{{ secure_asset('css/style.css') }}' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 @section('content')
     <div class='body'> 
-    <h1>学習指導教材[管理者用]</h1>
-        <div class='create'><h4><a href='/manager/subjects/{{ $subject->id }}/create'><<分野を新規作成>></a></h4>
+    <div class="flex">
+        <div class='home'><a href='/manager/'>ホーム</a></div>->
+        <div class='history'><a href='/manager/subjects/{{ $subject->id }}/'>{{ $subject->title }}</a></div>
+    </div>
+    <h1>{{ $subject->title }}[管理者用]</h1>
+        <div class='create'><a href='/manager/subjects/{{ $subject->id }}/create'><<分野を新規作成>></a></div>
         <div class='title'>
-            @foreach ($fields as $field)
+            @foreach ($fields as $field)</br>
                 <h4>・{{ $field->title }}</a></h4>
-                <h6><a href='/manager/subjects/{{ $subject->id }}/{{ $field->id }}/create'><<カテゴリーを新規作成>></a></h6></div>
+                <a href='/manager/subjects/{{ $subject->id }}/{{ $field->id }}/create'><<カテゴリーを新規作成>></a>
                 @foreach ($categories as $category)
                     @if ( $category->field_id == $field->id )
                     <h6><a href="/manager/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $category->id }}">・{{ $category->title }}</a></h6>
