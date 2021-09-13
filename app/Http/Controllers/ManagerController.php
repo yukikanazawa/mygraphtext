@@ -35,7 +35,7 @@ class ManagerController extends Controller
     
     public function fieldcreate(subject $subject)
     {
-        return view('manager.fieldcreate')->with(['subject' => $subject]); 
+        return view('create.field')->with(['subject' => $subject]); 
     }
     
     public function fieldstore(Request $request, subject $subject, Field $field)
@@ -46,16 +46,42 @@ class ManagerController extends Controller
         return redirect('/manager/subjects/'.$subject->id);
     }
     
-    public function categorycreate(subject $subject)
+    public function categorycreate(subject $subject, Field $field)
     {
-        return view('manager.categorycreate')->with(['subject' => $subject]); 
+        return view('create.category')->with(['subject' => $subject, 'field' => $field]); 
     }
     
-    public function categorystore(Request $request, subject $subject, Field $field)
+    public function categorystore(Request $request, subject $subject, Field $field, category $category)
     {
-        $input=$request['field']; 
+        $input=$request['category']; 
         $input['subject_id']=$subject->id;
-        $field->fill($input)->save();
+        $input['field_id']=$field->id;
+        $category->fill($input)->save();
         return redirect('/manager/subjects/'.$subject->id);
+    }
+    
+    public function postcreate(subject $subject, Field $field, category $category)
+    {
+        return view('create.post')->with(['subject' => $subject, 'field' => $field, 'category' => $category]); 
+    }
+    
+    public function poststore(Request $request, subject $subject, Field $field, category $category, post $post)
+    {
+        $input=$request['post'];
+        $input['subject_id']=$subject->id;
+        $input['field_id']=$field->id;
+        $input['category_id']=$category->id;
+        if($request->hasFile('file'))
+        {
+            $destination_path = 'public/files/posts';
+            $file = $request->file('file');
+            $file_name = $file->getClientOriginalName();
+            $path = $request->file('file')->storeAs($destination_path,$file_name);
+            
+            $input['file'] = $file_name;
+        }
+        $post->fill($input)->save();
+        return back();
+        //return redirect('/manager/subjects/'.$subject->id&$field->id&$category->id);
     }
 }

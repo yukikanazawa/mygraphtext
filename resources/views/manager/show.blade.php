@@ -23,6 +23,7 @@
             <h2 class='title'>{{ $post->title }}</h2>
             <p class='updated_at'>{{ $post->created_at }}</p>
             <p class='body'>{{ $post->body }}</p>
+            <iframe src='/_static/mygraphtext/storage/app/public/files/posts/{{ $post->file }}'></iframe>
         </div>
         <div class='back'>[<a href='/manager/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $category->id }}/'>戻る</a>]</div>
     </div>

@@ -11,7 +11,7 @@
         {{ $field->title }}/{{ $category->title }}</a></div>
     </div>
     <h1>{{ $field->title }}({{ $category->title }})[管理者用]</h1>
-        <div class='create'><a href='/manager/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $category->id }}/create'><<新規作成>></a></div></br>
+        <div class='create'><a href='/manager/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $category->id }}/upload'><<新規作成>></a></div></br>
         <div class='title'>
             @foreach ($posts as $post)
                 <h4><a href="/manager/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $category->id }}/{{ $post->id }}">・{{ $post->title }}</a></h4>

@@ -8,10 +8,10 @@
             {{ csrf_field() }}
             <div class="title">
                 <h2>タイトル</h2>
-                <input type="text" name="category[title]" placeholder="タイトルを記載" size="48">
+                <input type="text" name="category[title]" placeholder="カテゴリー名を記載" size="48">
             </div><br>
             <input type="submit" value="保存"/>
         </form>
-    <div class="back">[<a href='/manager/subjects/{{ $subject->id }}/{{ $field->id }}/'>戻る</a>]</div>
+    <div class="back">[<a href='/manager/subjects/{{ $subject->id }}/'>戻る</a>]</div>
 </div>
 @endsection
