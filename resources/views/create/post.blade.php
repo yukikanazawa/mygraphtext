@@ -10,7 +10,8 @@
             {{ csrf_field() }}
             <div class="title">
                 <h2>タイトル</h2>
-                <input type="text" name="post[title]" placeholder="タイトルを記載" size="48">
+                <input type="text" name="post[title]" placeholder="タイトルを記載" value="{{ old('post.title') }}" size="48">
+                <p class="title__error" style="color:red">{{ $errors->first('post.title') }}</p>
             </div><br>
             <div class="textbody">
                 <h2>本文</h2>
@@ -19,7 +20,7 @@
             <div class="form-group mt-4">
                 <h2>pdfまたはグラフ</h2>
                 <label for="eaxmpleFormControlFile1">ファイルを選択してください</label>
-                <input type="file" id="exampleFormControlfile1" name="file" class="form-control"></br>
+                <input type="file" multiple="multiple" id="exampleFormControlfile1" name="file" class="form-control"></br>
             </div>
             <button type="submit">保存</button>
         </form>

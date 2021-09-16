@@ -13,16 +13,20 @@
 Auth::routes();
 Route::get('/home', 'HomeController@index');
 
-Route::get('/manager/', 'ManagerController@index');
-Route::get('/manager/subjects/{subject}', 'ManagerController@subject');
-Route::get('/manager/subjects/{subject}/{field}/create', 'ManagerController@categorycreate');
-Route::get('/manager/subjects/{subject}/{field}/{category}', 'ManagerController@category');
-Route::get('/manager/subjects/{subject}/{field}/{category}/upload', 'ManagerController@postcreate');
-Route::post('/manager/subjects/{subject}/{field}/{category}/store', 'ManagerController@poststore');
-//Route::post('ajax/customer', 'UpdateController@store');   // Ajaxでデータを受け取る
-Route::get('/manager/subjects/{subject}/{field}/{category}/{post}', 'ManagerController@show');
-Route::get('/manager/subjects/{subject}/create', 'ManagerController@fieldcreate');
-Route::post('/manager/subjects/{subject}/store', 'ManagerController@fieldstore');
-Route::post('/manager/subjects/{subject}/{field}/store', 'ManagerController@categorystore');
+Route::get('/manager/', 'SubjectController@index');
+Route::get('/manager/subjects/{subject}', 'FieldController@field');
+Route::get('/manager/subjects/{subject}/{field}/create', 'CategoryController@create');
+Route::get('/manager/subjects/{subject}/{field}/{category}', 'PostController@post');
+Route::get('/manager/subjects/{subject}/{field}/{category}/create', 'PostController@create');
+Route::post('/manager/subjects/{subject}/{field}/{category}/store', 'PostController@store');
+Route::get('/manager/subjects/{subject}/{field}/{category}/{post}', 'PostController@show');
+Route::get('/manager/subjects/{subject}/{field}/{category}/{post}/edit', 'PostController@edit');
+Route::put('/manager/subjects/{subject}/{field}/{category}/{post}/update', 'PostController@update');
+Route::delete('/manager/subjects/{subject}', 'FieldController@destroy');
+Route::delete('/manager/subjects/{subject}/{field}', 'CategoryController@destroy');
+Route::delete('/manager/subjects/{subject}/{field}/{category}', 'PostController@destroy');
+Route::get('/manager/subjects/{subject}/create', 'FieldController@create');
+Route::post('/manager/subjects/{subject}/store', 'FieldController@store');
+Route::post('/manager/subjects/{subject}/{field}/store', 'CategoryController@store');
 
 Route::get('/', 'ManagerController@index');

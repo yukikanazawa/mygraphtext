@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('subject_id');
             $table->string('field_id');
-            $table->string('title');
+            $table->string('title')->unique();
             $table->timestamps();
             $table->softDeletesTz();
         });

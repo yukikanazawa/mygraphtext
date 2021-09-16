@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('subject_id');
             $table->string('field_id');
             $table->string('category_id');
-            $table->string('title');
+            $table->string('title')->unique();
             $table->string('body')->nullable();
             $table->string('file')->nullable();
             $table->timestamps();

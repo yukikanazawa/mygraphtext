@@ -8,7 +8,8 @@
             {{ csrf_field() }}
             <div class="title">
                 <h2>タイトル</h2>
-                <input type="text" name="field[title]" placeholder="分野名を記載" size="48">
+                <input type="text" name="field[title]" placeholder="分野名を記載" value="{{ old('title') }}" size="48">
+                <p class="title__error" style="color:red">{{ $errors->first('title') }}</p>
             </div><br>
             <input type="submit" value="保存"/>
         </form>

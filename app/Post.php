@@ -3,15 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    protected $fillable = ['title','subject_id','field_id','category_id','file'];
+    use SoftDeletes;
     
-    public function attachments() {
-
-        return $this->hasMany('App\File', 'post_id', 'id')
-            ->where('model', self::class);  // 「App\Customer」のものだけ取得
-
-    }
+    protected $fillable = ['title','body','subject_id','field_id','category_id','file'];
 }
