@@ -7,8 +7,6 @@ use App\Field;
 use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
-use App\Http\Requests\PostRequest;
-use App\Http\Requests\FieldRequest;
 
 class CategoryController extends Controller
 {
@@ -17,7 +15,7 @@ class CategoryController extends Controller
         return view('create.category')->with(['subject' => $subject, 'field' => $field]); 
     }
     
-    public function store(PostRequest $request, Subject $subject, Field $field, Category $category)
+    public function store(Request $request, Subject $subject, Field $field, Category $category)
     {
         $input=$request['category']; 
         $input['subject_id']=$subject->id;

@@ -16,7 +16,7 @@ class CreateFieldsTable extends Migration
         Schema::create('fields', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('subject_id');
-            $table->string('title')->unique();
+            $table->string('title');
             $table->timestamps();
             $table->softDeletesTz();
         });

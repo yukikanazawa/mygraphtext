@@ -18,9 +18,10 @@ class CreatePostsTable extends Migration
             $table->string('subject_id');
             $table->string('field_id');
             $table->string('category_id');
-            $table->string('title')->unique();
+            $table->string('title');
             $table->string('body')->nullable();
-            $table->string('file')->nullable();
+            $table->json('files')->nullable();
+            $table->json('paths')->nullable();
             $table->timestamps();
             $table->softDeletesTz();
         });

@@ -15,12 +15,15 @@
             </div><br>
             <div class="textbody">
                 <h2>本文</h2>
-                <textarea name="post[body]" value='{{ $post->body }}' rows="5" cols="75"></textarea>
+                <textarea name="post[body]" value='{{ $post->body }}' rows="5" cols="75">{{ $post->body }}</textarea>
             </div>
             <div class="form-group mt-4">
-                <h2>pdfまたはグラフ</h2>
-                <label for="eaxmpleFormControlFile1">ファイルを再度選択し直してください。</label>
-                <input type="file" id="exampleFormControlfile1" name="file" class="form-control"></br>
+                <h2>画像、テキストファイルはこちら</h2>
+                <label for="eaxmpleFormControlFile1" style="color:red">ファイルを再度選択し直してください(データ自体はリセットされていません)</label>
+                <input type="file" multiple="multiple" id="exampleFormControlfile1" name="files[]" class="form-control" accept=image/*,.pdf></br>
+                <h2>上記以外のファイルはこちら</h2>
+                <label for="eaxmpleFormControlFile2" style="color:red">ファイルを再度選択し直してください(データ自体はリセットされていません)</label>
+                <input type="file" multiple="multiple" id="exampleFormControlfile1" name="paths[]" class="form-control"></br>
             </div>
             <button type="submit">保存</button>
         </form>

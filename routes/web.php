@@ -29,4 +29,4 @@ Route::get('/manager/subjects/{subject}/create', 'FieldController@create');
 Route::post('/manager/subjects/{subject}/store', 'FieldController@store');
 Route::post('/manager/subjects/{subject}/{field}/store', 'CategoryController@store');
 
-Route::get('/', 'ManagerController@index');
+Route::get('/', 'SubjectController@index');

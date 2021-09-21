@@ -7,8 +7,6 @@ use App\Field;
 use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
-use App\Http\Requests\PostRequest;
-use App\Http\Requests\FieldRequest;
 
 class FieldController extends Controller
 {
@@ -23,7 +21,7 @@ class FieldController extends Controller
         return view('create.field')->with(['subject' => $subject]); 
     }
     
-    public function store(Subject $subject, Field $field, FieldRequest $request)
+    public function store(Subject $subject, Field $field, Request $request)
     {
         $input=$request['field'];
         $input['subject_id']=$subject->id;

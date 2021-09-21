@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 <link rel="stylesheet" href='{{ secure_asset('css/style.css') }}' />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href=https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css>
 @section('content')
     <div class='body'>
     <div class="flex">
@@ -23,12 +23,22 @@
             </form></br>
         </div>
         <div class='post'>
-            <h2 class='title'>{{ $post->title }}</h2>
-            <p class='updated_at'>{{ $post->created_at }}</p>
-            <h4 class='textbody'>{{ $post->body }}</h4>
-            @if ( !($post->file == null) )
-                <iframe src='/_static/mygraphtext/storage/app/public/files/posts/{{ $post->file }}' width=500px height=400px></iframe>
-            @endif
+            <p class='updated_at'>{{ $post->updated_at }}</p></br>
+            <h4 class='text_body'>{!! nl2br($post->body_with_link) !!}</h4></br>
+            <div class='paths'>
+                @if ( !($post->paths == null) )
+                    @foreach ($post->paths as $path)
+                        <a href='/_static/mygraphtext/public/storage/files/posts/{{ $path }}'>{{$path}}</a>　　/ 　
+                    @endforeach
+                @endif
+            </div></br>
+            <div class='files'>
+                @if ( !($post->files == null) )
+                    @foreach ($post->files as $file)
+                        <iframe src='/_static/mygraphtext/storage/app/public/files/posts/{{ $file }}' width=600px height=400px></iframe>
+                    @endforeach
+                @endif
+            </div>
         </div>
         <div class='back'>[<a href='/manager/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $category->id }}/'>戻る</a>]</div>
     </div>

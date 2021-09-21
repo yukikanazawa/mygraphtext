@@ -7,8 +7,6 @@ use App\Field;
 use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
-use App\Http\Requests\PostRequest;
-use App\Http\Requests\FieldRequest;
 
 class PostController extends Controller
 {
@@ -23,20 +21,36 @@ class PostController extends Controller
         return view('create.post')->with(['subject' => $subject, 'field' => $field, 'category' => $category]); 
     }
     
-    public function store(PostRequest $request, Subject $subject, Field $field, Category $category, Post $post)
+    public function store(Request $request, Subject $subject, Field $field, Category $category, Post $post)
     {
         $input=$request['post'];
+        
+        $destination_path = 'public/files/posts';
+        if($request->hasFile('files'))
+        {
+            $files = $request->file('files');
+            foreach($files as $file){
+                $file_name = $file->getClientOriginalName();
+                $file->storeAS($destination_path,$file_name);
+                $file_path[] = $file_name;
+            }
+            $input['files'] = $file_path;
+        }
+        if($request->hasFile('paths'))
+        {
+            $paths = $request->file('paths');
+            foreach($paths as $path){
+                $path_name = $path->getClientOriginalName();
+                $path->storeAS($destination_path,$path_name);
+                $path_path[] = $path_name;
+            }
+            $input['paths'] = $path_path;
+        }
+        
         $input['subject_id']=$subject->id;
         $input['field_id']=$field->id;
         $input['category_id']=$category->id;
-        if($request->hasFile('file'))
-        {
-            $destination_path = 'public/files/posts';
-            $file = $request->file('file');
-            $file_name = $file->getClientOriginalName();
-            $request->file('file')->storeAs($destination_path,$file_name);
-            $input['file'] = $file_name;
-        }
+        //dd($input);
         $post->fill($input)->save();
         return redirect('/manager/subjects/'.$subject->id.'/'.$field->id.'/'.$category->id);
     }
@@ -54,16 +68,31 @@ class PostController extends Controller
         return view('manager.edit')->with(['subject' => $subject, 'field' => $field, 'category' => $category, 'post' => $post]); 
     }
     
-    public function update(PostRequest $request, Subject $subject, Field $field, Category $category, Post $post)
+    public function update(Request $request, Subject $subject, Field $field, Category $category, Post $post)
     {
         $input=$request['post'];
-        if($request->hasFile('file'))
+        $input['files'] = null;
+        $input['paths'] = null;
+        $destination_path = 'public/files/posts';
+        if($request->hasFile('files'))
         {
-            $destination_path = 'public/files/posts';
-            $file = $request->file('file');
-            $file_name = $file->getClientOriginalName();
-            $request->file('file')->storeAs($destination_path,$file_name);
-            $input['file'] = $file_name;
+            $files = $request->file('files');
+            foreach($files as $file){
+                $file_name = $file->getClientOriginalName();
+                $file->storeAS($destination_path,$file_name);
+                $file_path[] = $file_name;
+            }
+            $input['files'] = $file_path;
+        }
+        if($request->hasFile('paths'))
+        {
+            $paths = $request->file('paths');
+            foreach($paths as $path){
+                $path_name = $path->getClientOriginalName();
+                $path->storeAS($destination_path,$path_name);
+                $path_path[] = $path_name;
+            }
+            $input['paths'] = $path_path;
         }
         $post->fill($input)->save();
         return redirect('/manager/subjects/'.$subject->id.'/'.$field->id.'/'.$category->id.'/'.$post->id);

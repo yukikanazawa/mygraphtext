@@ -7,8 +7,6 @@ use App\Field;
 use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
-use App\Http\Requests\PostRequest;
-use App\Http\Requests\FieldRequest;
 
 class SubjectController extends Controller
 {
