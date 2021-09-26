@@ -5,23 +5,13 @@
 @section('content')
     <div class='body'>
     <div class="flex">
-        <div class='home'><a href='/manager/'>ホーム</a></div>->
-        <div class='history'><a href='/manager/subjects/{{ $subject->id }}/'>{{ $subject->title }}</a></div>->
-        <div class='history'><a href='/manager/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $category->id }}/'>
+        <div class='home'><a href='/'>ホーム</a></div>->
+        <div class='history'><a href='/subjects/{{ $subject->id }}/'>{{ $subject->title }}</a></div>->
+        <div class='history'><a href='/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $category->id }}/'>
         {{ $field->title }}/{{ $category->title }}</a></div>->
-        <div class='history'><a href="/manager/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $category->id }}/{{ $post->id }}">{{ $post->title }}</a></div>
+        <div class='history'><a href="/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $category->id }}/{{ $post->id }}">{{ $post->title }}</a></div>
     </div>
-    <h1>{{ $post->title }}[管理者用]</h1>
-        <div class="flex">
-            <form method="POST" action="/manager/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $category->id }}" id="form_delete">
-                @csrf
-                @method('DELETE')
-                <input type="hidden" name="post_id" value='{{ $post->id }}'/>
-                <input type="submit" style="display:none">
-                <a href="/manager/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $category->id }}/{{ $post->id }}/edit"><<編集>></a>
-                <a class='delete'><span onclick="return deletePost();"><<削除>></span></a>
-            </form></br>
-        </div>
+    <h1>{{ $post->title }}</h1>
         <div class='post'>
             <p class='updated_at'>{{ $post->updated_at }}</p></br>
             <h4 class='text_body'>{!! nl2br($post->body_with_link) !!}</h4></br>
@@ -66,9 +56,11 @@
                     <form method="POST" action="/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $post->id }}/delete" id="form_destroy">
                         @csrf
                         @method('DELETE')
+                        @if( $comment->name == optional(Auth::user())->name )
                             <input type="hidden" name="comment_id" value='{{ $comment->id }}'/>
                             <input type="submit" style="display:none">
-                            <button onclick="return deleteComment();">削除</button>
+                            <button onclick="return deletePost();">削除</button>
+                        @endif
                     </form>
                     </div>
                 <p>{{ $comment->body }}</p></br>
@@ -78,15 +70,6 @@
     
     
     <script>
-    function deletePost(){
-        'use strict';
-        if (confirm('この投稿自体の情報をすべて削除しますか？')){
-            document.getElementById('form_delete').submit();
-        } else{
-            return false;    
-        }
-    }
-    
     function deleteComment(){
         'use strict';
         if (confirm('本当にコメントを削除しますか？')){

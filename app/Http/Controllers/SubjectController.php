@@ -14,4 +14,9 @@ class SubjectController extends Controller
     {
         return view('manager.index')->with(['subjects' => $subject->get()]);
     }
+    
+    public function userindex(Subject $subject)
+    {
+        return view('user.index')->with(['subjects' => $subject->get()]);
+    }
 }

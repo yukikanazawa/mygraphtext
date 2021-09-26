@@ -13,6 +13,11 @@ class Post extends Model
     
     protected $casts = ['files' => 'array', 'paths' => 'array'];
     
+    public function Comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    
     public function getBodyWithLinkAttribute(): string
     {
         $pattern = '/((?:https?|ftp):\/\/[-_.!~*\'()a-zA-Z0-9;\/?:@&=+$,%#]+)/';

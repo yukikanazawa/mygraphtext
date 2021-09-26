@@ -26,8 +26,7 @@
         
         <div class='title'>
             @foreach ($posts as $post)
-                <h4><a href="/manager/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $category->id }}/
-                {{ $post->id }}">・{{ $post->title }}</a></h4>
+                <h4><a href="/manager/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $category->id }}/{{ $post->id }}">・{{ $post->title }}</a></h4>
             @endforeach
         </div>
         <div class='back'>[<a href='/manager/subjects/{{ $subject->id }}/'>戻る</a>]</div>

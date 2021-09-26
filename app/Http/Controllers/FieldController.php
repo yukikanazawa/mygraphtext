@@ -16,6 +16,12 @@ class FieldController extends Controller
         return view('manager.field')->with(['fields' => $fields, 'subject' => $subject, 'categories' => $category->get()]);  
     }
     
+    public function userfield(Subject $subject, category $category)
+    {
+        $fields=Field::where('subject_id', $subject->id)->simplepaginate(10);
+        return view('user.field')->with(['fields' => $fields, 'subject' => $subject, 'categories' => $category->get()]);  
+    }
+    
     public function create(Subject $subject)
     {
         return view('create.field')->with(['subject' => $subject]); 

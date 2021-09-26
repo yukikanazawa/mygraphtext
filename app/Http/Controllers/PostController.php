@@ -16,6 +16,12 @@ class PostController extends Controller
         return view('manager.post')->with(['field' => $field, 'subject' => $subject, 'category' => $category, 'posts' => $posts]);  
     }
     
+    public function userpost(Subject $subject, Field $field, Category $category)
+    {
+        $posts=Post::where('category_id', $category->id)->simplepaginate(20);
+        return view('user.post')->with(['field' => $field, 'subject' => $subject, 'category' => $category, 'posts' => $posts]);  
+    }
+    
     public function create(Subject $subject, Field $field, Category $category)
     {
         return view('create.post')->with(['subject' => $subject, 'field' => $field, 'category' => $category]); 
@@ -96,10 +102,5 @@ class PostController extends Controller
         }
         $post->fill($input)->save();
         return redirect('/manager/subjects/'.$subject->id.'/'.$field->id.'/'.$category->id.'/'.$post->id);
-    }
-    
-    public function show(Subject $subject, Field $field, Category $category, Post $post)
-    {
-        return view('manager.show')->with(['field' => $field, 'subject' => $subject, 'category' => $category, 'post' => $post]);  
     }
 }
