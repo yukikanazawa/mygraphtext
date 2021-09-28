@@ -18,19 +18,25 @@
             <div class='paths'>
                 @if ( !($post->paths == null) )
                     @foreach ($post->paths as $path)
-                        <a href='/_static/mygraphtext/public/storage/files/posts/{{ $path }}'>{{$path}}</a>　　/ 　
+                        <a href='/_static/mygraphtext/public/storage/files/posts/{{ $path }}'>{{ $path }}</a>　　/ 　
                     @endforeach
                 @endif
             </div></br>
             <div class='files'>
                 @if ( !($post->files == null) )
                     @foreach ($post->files as $file)
+                        <a href='/_static/mygraphtext/public/storage/files/posts/{{ $file }}'>{{ $file }}</a>
                         <iframe src='/_static/mygraphtext/storage/app/public/files/posts/{{ $file }}' width=600px height=400px></iframe>
                     @endforeach
                 @endif
             </div>
         </div>
-        <div class='back'>[<a href='/manager/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $category->id }}/'>戻る</a>]</div>
+        <div class='flex'>
+            <div class='back'>[<a href='/manager/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $category->id }}/'>戻る</a>]</div>
+            <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3" data-url="https://social-plugins.line.me/ja/how_to_install" data-color="default" data-size="small" data-count="false" style="display: none;"></div>
+            <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
         <div class="comment">
                 <h2>新規のコメントを作成</h2>
                 @if( !empty(Auth::user()->name) ) 
@@ -59,7 +65,17 @@
                         @if( $comment->name == optional(Auth::user())->name )
                             <input type="hidden" name="comment_id" value='{{ $comment->id }}'/>
                             <input type="submit" style="display:none">
-                            <button onclick="return deletePost();">削除</button>
+                            <button onclick="return deleteComment();">削除</button>
+                            <script>
+                                function deleteComment(){
+                                    'use strict';
+                                    if (confirm('本当にコメントを削除しますか？')){
+                                        document.getElementById('form_destroy').submit();
+                                    } else{
+                                        return false;    
+                                    }
+                                }
+                            </script>
                         @endif
                     </form>
                     </div>
@@ -67,16 +83,4 @@
                 @endforeach</br></br>
             </div>
     </div>
-    
-    
-    <script>
-    function deleteComment(){
-        'use strict';
-        if (confirm('本当にコメントを削除しますか？')){
-            document.getElementById('form_destroy').submit();
-        } else{
-            return false;    
-        }
-    }
-    </script>
 @endsection
