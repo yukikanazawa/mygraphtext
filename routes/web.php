@@ -16,6 +16,8 @@ Route::get('/home', 'HomeController@index');
 //管理者用
 Route::get('/manager/', 'SubjectController@index');
 Route::get('/manager/subjects/{subject}', 'FieldController@field');
+Route::post('/manager/subjects/{subject}/store', 'FieldController@store');
+Route::post('/manager/subjects/{subject}/{field}/store', 'CategoryController@store');
 Route::post('/subjects/{subject}/{field}/{post_id}/store', 'CommentPostController@store');
 Route::get('/manager/subjects/{subject}/{field}/create', 'CategoryController@create');
 Route::get('/manager/subjects/{subject}/{field}/{category}', 'PostController@post');
@@ -29,8 +31,6 @@ Route::delete('/manager/subjects/{subject}/{field}', 'CategoryController@destroy
 Route::delete('/subjects/{subject}/{field}/{post}/delete', 'CommentPostController@destroy');
 Route::delete('/manager/subjects/{subject}/{field}/{category}', 'PostController@destroy');
 Route::get('/manager/subjects/{subject}/create', 'FieldController@create');
-Route::post('/manager/subjects/{subject}/store', 'FieldController@store');
-Route::post('/manager/subjects/{subject}/{field}/store', 'CategoryController@store');
 
 //ユーザー用
 Route::get('/', 'SubjectController@userindex');
