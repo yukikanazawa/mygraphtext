@@ -33,9 +33,9 @@
         </div>
         <div class='flex'>
             <div class='back'>[<a href='/manager/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $category->id }}/'>戻る</a>]</div>
-            <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3" data-url="https://social-plugins.line.me/ja/how_to_install" data-color="default" data-size="small" data-count="false" style="display: none;"></div>
+            <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3" data-url="https://stark-coast-45624.herokuapp.com/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $category->id }}/{{ $post->id }}" data-color="default" data-size="small" data-count="false" style="display: none;"></div>
             <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
-            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <a href="https://stark-coast-45624.herokuapp.com/subjects/{{ $subject->id }}/{{ $field->id }}/{{ $category->id }}/{{ $post->id }}" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
         <div class="comment">
                 <h2>新規のコメントを作成</h2>
